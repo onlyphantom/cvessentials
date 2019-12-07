@@ -1,5 +1,7 @@
 # Essentials of Computer Vision  
 
+![](assets/blurb.png)
+
 An introductory course to computer vision, with the following emphasis:
 - Ground-up principles, eg:  
     - Trigonometry  
