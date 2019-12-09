@@ -46,7 +46,7 @@ These are but a handful of examples where one may expect to see routine use of a
 In your learn-by-building section, you will find a less-than-perfectly-digitalized map, `belitung_raw.jpg`. Your job is to apply what you've apply the necessary affine transformation to correct its perspective distortion and the resize the map accordingly.
 
 ## Getting Affine Transformation 
-Given the importance of such a relation between two images, it should come as no surprise that `opencv` packs a number of convenient functions to help us specify this transformation. The two common use-cases are:
+Given the importance of such a relation between two images, it should come as no surprise that `opencv` packs a number of convenience methods to help us specify this transformation. The two common use-cases are:
 - 1. We **specify** our 2D vector representing the original image, $X$ and our 2x3 transformation matrix $M$ constructed in `numpy`.
     - Example code: 
     ```py
@@ -71,6 +71,41 @@ Given the importance of such a relation between two images, it should come as no
     [[ 1.21428571  0.         -2.14285714]
      [ 0.          1.          0.        ]]
     ```
+
+- 2b _[Optional]_. As an extension to point (2) above, consider how we would use `cv2.warpAffine` to achieve a 90 degree clockwise rotation. If you have attended my Unsupervised Learning course from the Machine Learning Specialization, you will undoubtedly have seen this quick reference:
+    ![](assets/rotationmatrix.gif) 
+
+    To plug that directly into the $A$ of our original formula:
+    $$T = A \cdot \begin{bmatrix} x \\ y \end{bmatrix} + B$$
+
+    A 90-degree clockwise rotation could be implemented as a 270-degree anti-clockwise rotation. Let's see this implementation in `opencv`:
+
+    - Example code: 
+    ```py
+    img = cv2.imread("assets/cvess.png")
+    (h, w) = img.shape[:2]
+    center = (w // 2, h // 2)
+    mat3 = cv2.getRotationMatrix2D(center, angle=270, scale=1)
+    print(f'270 degree anti-clockwise: \n {np.round(mat3, 2)}')
+    rotated = cv2.warpAffine(img, mat, (w, h))
+    cv2.imshow("Rotated", rotated)
+    # 
+    # print output:
+    # 
+    # 270 degree anti-clockwise: 
+    # [[ -0.  -1. 400.]
+    # [  1.  -0.   0.]] 
+    ```
+
+    We learned earlier that:
+    $$M = \begin{bmatrix} A & B \end{bmatrix} = \begin{bmatrix} a_{00} & a_{01} & b_{00} \\  a_{10} & a_{11} & b_{10} \end{bmatrix}$$
+
+    So $A$ would be the `[[0, -1], [1, 0]]` and $B$ would be `[400, 0]`. Fundamentally, the `cv2.getRotationMatrix2D` is still applying an affine transformation to map the pixels from one point to another using a 2x3 matrix.
+
+    - Skeptical and want further mathematical proof? 
+        - Hop to the **Trigonometry Proof** section. 
+    - Want to experiment? 
+        - Modify the script in `rotate_01.py` to obtain $M$ for a 180-degree rotation, and a 30-degree counter-clockwise rotation
 
 ### Dive Deeper
 
@@ -102,10 +137,25 @@ Supposed we'll like to see the transformed image (scaled by 3x) in its entirety,
 
 Refer to `scale_04.py` to verify that you've got this right.
 
-## Primer on Matrix Multiplication
+#### Trigonometry Proof
+_This section is optional; you may choose to skip this section._
 
+- [ ] [Watch Rotation Matrix Explained Visually ](https://www.youtube.com/watch?v=tIixrNtLJ8U&feature=youtu.be)
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/tIixrNtLJ8U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+If you're done watching the video, let's now see the same example in code:
+```py
+np.float32([[0, -1], [1, 0]])
+x = np.float32([3, 6])
+np.matmul(a, x)
+# output:
+# array([-6.,  3.], dtype=float32)
+```
 
 ## Examples and Illustrations
 
+
 ## Learn-by-Building
 In the `homework` directory, you'll find a digital map `belitung_raw.jpg`. Your job is to apply what you've learned in this lesson to restore the map by correcting its skew and resize it appropriately. 
+
+![](assets/hw1_belitung.png)
