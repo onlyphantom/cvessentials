@@ -416,8 +416,22 @@ result <span class="token operator">=</span> cv2<span class="token punctuation">
 <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox"> <a href="https://www.youtube.com/watch?v=tIixrNtLJ8U&amp;feature=youtu.be">Watch Rotation Matrix Explained Visually </a>  <iframe width="560" height="315" src="https://www.youtube.com/embed/tIixrNtLJ8U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </li>
 </ul>
-<h2 class="mume-header" id="examples-and-illustrations">Examples and Illustrations</h2>
+<p>If you&apos;re done watching the video, let&apos;s now see the same example in code:</p>
+<pre data-role="codeBlock" data-info="py" class="language-python">np<span class="token punctuation">.</span>float32<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+x <span class="token operator">=</span> np<span class="token punctuation">.</span>float32<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+np<span class="token punctuation">.</span>matmul<span class="token punctuation">(</span>a<span class="token punctuation">,</span> x<span class="token punctuation">)</span>
+<span class="token comment"># output:</span>
+<span class="token comment"># array([-6.,  3.], dtype=float32)</span>
+</pre><h2 class="mume-header" id="code-illustrations">Code Illustrations</h2>
 
+<ul>
+<li>Code example of using <code>getRotationMatrix2D()</code> to get a 2x3 matrix: <strong><code>rotate_01.py</code></strong></li>
+<li>Code example of using three points to <code>getAffineTransform()</code>, obtaining a 2x3 matrix of <code>[[1,0,0], [0,1,0]]</code> (no transformation): <code>scale_01.py</code></li>
+<li>Code example of explicit specification for our 2x3 matrix using <code>np.float32([[1,0,0], [0,1,0]])</code>: <strong><code>scale_02.py</code></strong></li>
+<li>Code example of setting the <code>dsize</code> parameter in <code>cv2.warpAffine</code> without transformation: <strong><code>scale_03.py</code></strong></li>
+<li>Code example of a scale transformation and setting the <code>dsize</code> parameter accordingly: <strong><code>scale_04.py</code></strong></li>
+<li>Code example of using three points to <code>getAffineTransform()</code>, obtaining a 2x3 matrix of <code>[[1,0,0], [0,1,0]]</code>: <strong><code>scale_05.py</code></strong></li>
+</ul>
 <h2 class="mume-header" id="learn-by-building">Learn-by-Building</h2>
 
 <p>In the <code>homework</code> directory, you&apos;ll find a digital map <code>belitung_raw.jpg</code>. Your job is to apply what you&apos;ve learned in this lesson to restore the map by correcting its skew and resize it appropriately.</p>
@@ -446,7 +460,7 @@ result <span class="token operator">=</span> cv2<span class="token punctuation">
 </li>
 </ul>
 </li>
-<li><a href="#examples-and-illustrations">Examples and Illustrations</a></li>
+<li><a href="#code-illustrations">Code Illustrations</a></li>
 <li><a href="#learn-by-building">Learn-by-Building</a></li>
 </ul>
 </li>

@@ -152,8 +152,13 @@ np.matmul(a, x)
 # array([-6.,  3.], dtype=float32)
 ```
 
-## Examples and Illustrations
-
+## Code Illustrations
+- Code example of using `getRotationMatrix2D()` to get a 2x3 matrix: **`rotate_01.py`**  
+- Code example of using three points to `getAffineTransform()`, obtaining a 2x3 matrix of `[[1,0,0], [0,1,0]]` (no transformation): `scale_01.py`
+- Code example of explicit specification for our 2x3 matrix using `np.float32([[1,0,0], [0,1,0]])`: **`scale_02.py`**
+- Code example of setting the `dsize` parameter in `cv2.warpAffine` without transformation: **`scale_03.py`**
+- Code example of a scale transformation and setting the `dsize` parameter accordingly: **`scale_04.py`**
+- Code example of using three points to `getAffineTransform()`, obtaining a 2x3 matrix of `[[1,0,0], [0,1,0]]`: **`scale_05.py`**
 
 ## Learn-by-Building
 In the `homework` directory, you'll find a digital map `belitung_raw.jpg`. Your job is to apply what you've learned in this lesson to restore the map by correcting its skew and resize it appropriately. 
