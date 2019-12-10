@@ -2,9 +2,9 @@ import numpy as np
 import cv2
 
 img = cv2.imread("assets/corgi.png")
-cv2.circle(img, (10, 10), 4, (0, 255, 255), -1)
-cv2.circle(img, (80, 10), 4, (0, 255, 255), -1)
-cv2.circle(img, (10, 80), 4, (0, 255, 255), -1)
+cv2.circle(img, (10, 10), 4, (255, 0, 0), -1)
+cv2.circle(img, (80, 10), 4, (0, 255, 0), -1)
+cv2.circle(img, (10, 80), 4, (0, 0, 255), -1)
 cv2.imshow("Original", img)
 
 # custom transformation matrix
