@@ -160,10 +160,10 @@ Refer to `scale_04.py` to verify that you've got this right.
 #### Trigonometry Proof
 _This section is optional; you may choose to skip this section._
 
-- [ ] [Watch Rotation Matrix Explained Visually ](https://www.youtube.com/watch?v=tIixrNtLJ8U&feature=youtu.be)
+- [ ] [Watch Rotation Matrix Explained Visually ](https://www.youtube.com/watch?v=tIixrNtLJ8U)
     <iframe width="560" height="315" src="https://www.youtube.com/embed/pWfXR_HmyUw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-    - [Bahasa Indonesia voiceover](https://www.youtube.com/watch?v=pWfXR_HmyUw&feature=youtu.be) is also available
+    - [Bahasa Indonesia voiceover](https://www.youtube.com/watch?v=pWfXR_HmyUw) is also available
 
 If you're done watching the video, see the same example being presented in code:
 ```py
@@ -184,7 +184,7 @@ np.matmul(a, x)
 - Code example of translating (shifting an image) using a 2x3 matrix: **`translate_01.py`**
 
 ## Summary and Key Points
-1. Images from imaging systems and capturing systems are often "subject to geometric distortion introduced by perspective irregularities"[^1].  
+1. Images from imaging systems and capturing systems are often "subject to geometric distortion introduced by perspective irregularities"[^1] or "deformations that occur with non-ideal camera angles"[^2].  
 
 2. In the case of translation or scaling, we typically specify our 2x3 matrix using `np.float()` and feed this matrix to `cv2.warpAffine()`  
 
@@ -206,3 +206,5 @@ In the `homework` directory, you'll find a digital map `belitung_raw.jpg`. Your 
 
 ## References
 [^1]: Fisher, R., Perkins, S., Walker, A., Wolfart, E., Hypermedia Image Processing Learning (HIPR2) Resources, 2003
+
+[^2]: [MathWorks](https://www.mathworks.com/discovery/affine-transformation.html), Linear mapping method using affine transformation, Affine Transformation
