@@ -6,7 +6,8 @@ As the computation slides over each pixel neighborhood, we perform some arithmet
 
 This kernel describes how the pixels in that neighborhood are combined or transformed to yield a corresponding output.
 
-- [ ] [Watch Kernel Convolution Explained Visually](#)
+- [ ] [Watch Kernel Convolution Explained Visually](https://www.youtube.com/watch?v=6m44SWnNPZs)
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/6m44SWnNPZs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Mathematical Definitions
 You will notice from the video that the output image now has a **shape that is smaller** than the original input. Mathematically, the shape of this output would be:
