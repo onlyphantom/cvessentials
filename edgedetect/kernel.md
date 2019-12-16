@@ -39,9 +39,38 @@ $$M = \begin{bmatrix} 1 & 2 & 0 \\ -1 & 3 & 0 \\ 0 & -1 & 0  \end{bmatrix}$$
 4. Repeat the process for all pixels by sliding the kernel across the entire image, as specified by the stride
 
 ## Smoothing and Blurring
+To see a practical application of this, we'll use the `cv2.filter2D` to convolve over our image using the following kernel:
+
+$$K = \frac{1}{5\cdot5} \begin{bmatrix} 1 & 1 & 1 & 1 & 1 \\ 1 & 1 & 1 & 1 & 1 \\ 1 & 1 & 1 & 1 & 1 \\ 1 & 1 & 1 & 1 & 1  \\ 1 & 1 & 1 & 1 & 1  \end{bmatrix}$$
+
+The kernel we specified above is equivalent to a _normalized box filter_ of size 5. Having watched the video earlier, you may intuit that the outcome of such a convolution is that each pixel in the input image is replaced by the average of the 5x5 pixels around it. You are in fact correct. If you are skeptical and would rather see proof of it, we'll see this in the following Code Illustrations section.
+
+> **A Note on Terminology**
+> When all we've been talking about is kernels, why is it that we're using the "filter" terminology in `opencv` code instead? That depends on the context. In the case of a convolutional neural network, _kernel_ and _filters_ are used interchangably: they both refer to the same thing.
+> Some computer vision researchers have proposed to use a stricter definition, prefering to use the term "kernel" for a 2D array of weights, like our matrix above, and the term "filter" for the 3D structure of multiple kernels stacked together[^3], a concept we'll explore further in the Convolutional Neural Network part of this course.
+
+#### Code Illustrations: Mean Filtering 
+1. `meanblur_01.py` demonstrates the construction of a 5x5 mean average filter using `np.ones((5,5))/25`. Because every coefficient is basically the same, this merely replace the value of each pixel in our input image with the average of the values in its 5x5 neighborhood. 
+
+```py
+img = cv2.imread("assets/canal.png")
+mean_blur = np.ones((5, 5), dtype="float32") * (1.0 / (5 ** 2))
+smoothed_col = cv2.filter2D(img, -1, mean_blur)
+```
+
+Alternatively, we can be explicit in our creation of the 5x5 kernel using `numpy`'s array:
+```py
+mean_blur = np.array(
+[[0.04, 0.04, 0.04, 0.04, 0.04],
+    [0.04, 0.04, 0.04, 0.04, 0.04],
+    [0.04, 0.04, 0.04, 0.04, 0.04],
+    [0.04, 0.04, 0.04, 0.04, 0.04],
+    [0.04, 0.04, 0.04, 0.04, 0.04]])
+```
+
+2. To be fully convinced that the mean filtering operation is doing what we expect it to do, we can inspect the pixel values before- and after- the convolution, to verify that the math checks out by hand. We do this in `meanblur_02.py`.
 
 
-#### Practical Examples
 
 ## Role in Convolutional Neural Network
 
@@ -63,3 +92,5 @@ $$M = \begin{bmatrix} 1 & 2 & 0 \\ -1 & 3 & 0 \\ 0 & -1 & 0  \end{bmatrix}$$
 [^1]: Making your own linear filters, [OpenCV Documentation](https://docs.opencv.org/2.4/doc/tutorials/imgproc/imgtrans/filter_2d/filter_2d.html)
 
 [^2]: Bradski, Kaehler, Learning OpenCV
+
+[^3]: https://stats.stackexchange.com/a/366940
