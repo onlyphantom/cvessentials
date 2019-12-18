@@ -70,6 +70,56 @@ mean_blur = np.array(
 
 2. To be fully convinced that the mean filtering operation is doing what we expect it to do, we can inspect the pixel values before- and after- the convolution, to verify that the math checks out by hand. We do this in `meanblur_02.py`.
 
+    ```py
+    img = cv2.imread("assets/canal.png")
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    print(f'Gray: {gray[:5, :5]}')
+    # [[ 31  27  21  17  21]
+    # [ 77  85  86  87  90]
+    # [205 205 215 227 222]
+    # [224 230 222 243 249]
+    # [138 210 206 218 242]]
+    for i in range(3):
+        newval = np.round(np.mean(gray[:5, i:i+5]))
+        print(f'Mean of 25x25 pixel #{i+1}: {np.int(newval)}')
+    # output:
+    # Mean of 25x25 pixel #1: 152
+    # Mean of 25x25 pixel #2: 158
+    # Mean of 25x25 pixel #3: 160
+    # 
+    ```
+    The code above shows that the output of such a convolution operation beginning at the top-left region of the image would be 152. As we slide along the horizontal direction and re-compute the mean of the neighborhood, we get 158. As we slide our kernel along the horizontal direction for a second time and re-compute the mean of the neighborhood we obtain the value of 160. 
+    
+    If you prefer you can verify these values by hand, using the raw pixel values from `gray[:5, :5]` (5x5 top-left region of the image).
+
+    ```py
+    mean_blur = np.ones(KERNEL_SIZE, dtype="float32") * (1.0 / (5 ** 2))
+    smoothed_gray = cv2.filter2D(gray, -1, mean_blur)
+    print(f'Smoothed: {smoothed_gray[:5, :5]}')
+    # output:
+    # [[122 123 125 127 128]
+    # [126 127 128 131 132]
+    # [148 149 152 158 160]
+    # [177 179 184 196 202]
+    # [197 199 204 222 229]]
+    ```
+    Notice that from the output of our mean-filter, the first anchor (center of the neighborhood) has transformed from 215 to 152, and the one to the right of it has transformed from 227 to 158, and so on. The math does work out and you can observe the blur effect directly by running `meanblur02.py`.
+
+3. As it turns out, `opencv` provides a set of convenience functions to apply filtering onto our images. All the three approaches below yield the same output, as can be verified from the output pixel values after executing `meanblur_03.py`:
+
+    ```py
+    # approach 1
+    mean_blur = np.ones(KERNEL_SIZE, dtype="float32") * (1.0 / (5 ** 2))
+    smoothed_gray = cv2.filter2D(gray, -1, mean_blur) 
+
+    # approach 2
+    smoothed_gray = cv2.blur(gray, KERNEL_SIZE)
+    
+    # approach 3
+    smoothed_gray = cv2.boxFilter(gray, -1, KERNEL_SIZE)
+    ```
+
+
 
 
 ## Role in Convolutional Neural Network
