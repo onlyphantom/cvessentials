@@ -196,7 +196,7 @@ In `S1` and `S2`, we're applying a max-pooling filter to down-sample our image r
 - Median Filter: `cv2.medianBlur(img, KERNEL_SIZE)`
     - Replace each pixel with the **median** of its neighboring pixels
 - Gaussian Filter: `cv2.GaussianBlur(img, KERNEL_SIZE, 0)`
-- Bilateral Filter: `cv2.bilateralFilter(img, )`
+- Bilateral Filter: `cv2.bilateralFilter(img, d, sigmaColor, sigmaSpace)`
     - An edge-preserving smoothing that aims to keep edges sharp
 
 
