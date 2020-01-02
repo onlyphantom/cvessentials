@@ -190,7 +190,7 @@ In `S1` and `S2`, we're applying a max-pooling filter to down-sample our image r
  
 ![](assets/c6pooling.png)
 
-## Handy kernels for image processing
+## Handy Kernels for Image Processing
 - Averaging Filter: `cv2.blur(img, KERNEL_SIZE)`  
     - As seen in `meanblur_03.py`, replace each pixel with the **mean** of its neighboring pixels
 - Median Filter: `cv2.medianBlur(img, KERNEL_SIZE)`
@@ -276,6 +276,7 @@ sharpen_col = cv2.filter2D(img, -1, approx_gaussian)
 Notice how this method uses an approximate Gaussian kernel and that the result is an overall more natural smoothing:
 ![](assets/gaussiansharpen.png)
 
+##### Unsharp Masking
 The second approach is known as "unsharp masking", derived from that fact that the technique uses a blurred, or "unsharp", negative image to create a mask of the original image[^7]. This technique is one of the oldest tool in photographic processing (tracing back to 1930s) and popular tools such as Adobe Photoshop and GIMP have direct implementations of it named, appropriately, Unsharp Mask. 
 
 Lifted straight from the Wikipedia article itself, a "typical blending formula for unsharp masking is **sharpened = original + (original - blurred) * amount**". **Amount** represents how much contrast is added to the edges.
@@ -319,9 +320,6 @@ To help with your recall, I made a simple illustration below:
 ![](assets/gaussiankernel.png)
 
 Whenever you're ready, move on to `edgedetect.md` to learn the essentials of edge detection using kernel operations. 
-
-## Learn-by-Building
-
 
 ## References
 [^1]: Making your own linear filters, [OpenCV Documentation](https://docs.opencv.org/2.4/doc/tutorials/imgproc/imgtrans/filter_2d/filter_2d.html)

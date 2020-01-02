@@ -20,5 +20,15 @@
     - [ ] 138 Width x 598 Height
     - [ ] None of the answers above 
 
+## Tresholding Edge Detection
+4. In an image with lighting conditions that result in some parts of the image being shaded differently than the others, which of the thresholding techniques may yield a more robust output?
+    - [ ] Pixel-intensity based thresholding
+    - [ ] Otsu's global thresholding method
+    - [ ] Adaptive thresholding
 
-## Edge Detection
+5. We want to retrieve only the extreme outer contours. We do not need to store all the boundary points to minimise redundancy and save memory requirements. Which are the values to be passed into the findContours() function?
+    - [ ] RETR_EXTERNAL, CHAIN_APPROX_SIMPLE
+    - [ ] RETR_EXTERNAL, CHAIN_APPROX_NONE
+    - [ ] RETR_OUTER, CHAIN_APPROX_SIMPLE
+    - [ ] RETR_OUTER, CHAIN_APPROX_NONE
+    - [ ] RETR_LIST, CHAIN_APPROX_NONE
