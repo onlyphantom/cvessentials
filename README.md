@@ -70,3 +70,12 @@ The workshop will be delivered in English. Q&A Sessions will be in English and B
 The intended audience for this course and accompanying workshop are absolute beginners who have an interest in computer vision and prefer to learn from ground up principles rather than a "apply-and-go tutorial approach".  
 
 The first scheduled workshop is January 4, 2020, which serves as an introduction to this course. Future courses will follow an in-classroom coding sessions with supporting Teaching Assistants.
+
+## Image Assets
+- `car2.png`, `pen.jpg`, `lego.jpg` and `sudoku.jpg` are under Creative Commons (CC) license.
+
+- `sarpi.jpg`, `castello.png`, `canal.png` and all other photography used are taken during my trip to Venice. 
+
+- All other illustrations are created by me in Keynote. 
+
+- Videos are created by me, and Bahasa Indonesia voice over on my videos is by [Tiara Dwiputri](https://github.com/tiaradwiputri)
