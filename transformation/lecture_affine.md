@@ -33,8 +33,17 @@ $$T = M \cdot [x,y,1]^T = \begin{bmatrix}
 a_{00}x + a_{01}y + b_{00} \\ a_{10}x + a_{11}y + b_{10}  \end{bmatrix}$$
 
 #### Practical Examples
-In `scale_04.py` from the **Examples and Illustrations** section, you'll see that the  2x3 matrix $M$ is simple defined as such:
+In `scale_04.py` from the **Examples and Illustrations** section, you'll see that the  2x3 matrix $M$ is simply defined as such:
 `np.float32([[3, 0, 0], [0, 3, 0]])`
+
+The code above is equivalent to the one below:
+```py
+x = np.array([[3, 0, 0], [0, 3, 0]], dtype='float32')
+# alternative:
+x = np.array([[3, 0, 0], [0, 3, 0]])
+x = x.astype('float32')
+x.dtype # dtype('float32')
+```
 
 When you explicitly specify a 2x3 matrix, think of the first two columns as the $A$ component, or the matrix-multiplication process. The third column, naturally, represents the $B$ component, or the vector addition process. This may sound a little abstract, so I encourage you to pause and take a look at the code below:
 ```py
@@ -160,14 +169,14 @@ Refer to `scale_04.py` to verify that you've got this right.
 #### Trigonometry Proof
 _This section is optional; you may choose to skip this section._
 
-- [ ] [Watch Rotation Matrix Explained Visually ](https://www.youtube.com/watch?v=tIixrNtLJ8U)
+- [ ] [Watch Rotation Matrix Explained Visually](https://www.youtube.com/watch?v=tIixrNtLJ8U)
     <iframe width="560" height="315" src="https://www.youtube.com/embed/pWfXR_HmyUw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
     - [Bahasa Indonesia voiceover](https://www.youtube.com/watch?v=pWfXR_HmyUw) is also available
 
 If you're done watching the video, see the same example being presented in code:
 ```py
-np.float32([[0, -1], [1, 0]])
+a = np.float32([[0, -1], [1, 0]])
 x = np.float32([3, 6])
 np.matmul(a, x)
 # output:
