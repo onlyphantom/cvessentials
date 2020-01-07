@@ -291,7 +291,7 @@ Recall that contours are just boundaries of a shape? In a sense, it is an array 
 Supposed we perform the `findContour` operation on an image of two rectangles, one method it may use to achieve that is to store as many points around these rectangle boxes as possible? When we set `cv2.CHAIN_APPROX_NONE`, that is in fact what the algorithm would do, resulting in 658 points around the border of the top rectangle:
 ![](homework/equal.png)
 
-However, notice the more efficient solution would have been to store only the 4 coordinates at each corner of the rectangle. The contour is perfectly represented and recreated using just 4 points for each rectangle, resulting in a total number of 8 points compared to 1,316 points.
+However, notice the more efficient solution would have been to store only the 4 coordinates at each corner of the rectangle. The contour is perfectly represented and recreated using just 4 points for each rectangle, resulting in a total number of 8 points compared to 1,316 points. `cv2.CHAIN_APPROX_SIMPLE`[^9] is an implementation of this, and you can find the sample code below: 
 
 ![](assets/approx.png)
 
@@ -320,6 +320,58 @@ print(f"Cnts NoApprox Shape:{cnts2[0].shape}")
 # Cnts NoApprox Shape:(658, 1, 2)
 ```
 The full script for the experiment above is in `contourapprox.py`.
+
+You may, at this point, hop to the Learn By Building section to attempt your homework.
+
+# Canny Edge Detector
+John Canny developed a multi-stage procedure that, some 30 years later, is "still a state-of-the-art edge detector"[^10]. Better edge detection algorithms usually require greater computational resources -- and consequently -- longer processing times -- or a greater number of parameters, in an area where algorithm speed is oftentimes the most important criteria. For the reasons above along with its general robustness, the canny edge algorithm has become one of the "most important methods to find edges" even in modern literature[^1].
+
+I said it's a multi-stage procedure, because the technique as described in his original paper, _computational theory of edge detection_, works as follow[^11]:
+1. Gaussian smoothing
+    - Noise reduction using a 5x5 Gaussian filter
+2. Compute gradient magnitudes and angles
+3. Apply non-maximum suppression (NMS) 
+    - Suppress close-by edges that are non-maximal, leaving only local maxima as edges
+4. Track edge by hysterisis
+    - Suppress all other edges that are weak and not connected to strong edges and link the edges
+
+Step (1) and (2) in the procedure above can be achieved using code we've written so far in our Sobel Operator scripts. We use the Sobel mask filters to compute $G_x$ and $G_y$, respectively the gradient component in each orientation. We then compute the gradient magnitude and the angle $\theta$:
+
+Gradient magnitude:
+$$|G| = \sqrt{G^2_x + G^2_y} $$
+
+And recall that the slope $\theta$ of the gradient is calculated as follow:
+$$\theta(x,y)=tan^{-1}(\frac{G_y}{G_x})$$
+
+## Edge Thinning
+Step (3) in the procedure is another common technique in computer vision known as the non-maximum suppression (NMS). Let's begin by taking a look at the output of our Sobel edge detector from earlier exercises:
+![](assets/sobeledges.png)
+
+Notice as we zoom in on the output image, we can see the gradient-based method did create our strong edges, but it also created "weak" edges it find in our image. Because it is not a parameterized function -- the edge is computed using values of the gradient magnitude and direction -- we have to rely on an additional mechanism for the edge thinning operation with the criterion being one accurate response to any given edge[^12].
+
+Non-maximum suppression help us obtain the strongest edge by suppressing all the gradient values, i.e. setting them to 0 except for the local maxima, which indicate locations with the sharpest change of intensity value. In the words of `OpenCV`:
+> After getting gradient magnitude and direction, a full scan of image is done to remove any unwanted pixels which may not constitute the edge. For this, at every pixel, pixel is checked if it is a local maximum in its neighborhood in the direction of gradient. If point A is on the edge, and point B and C are in gradient directions, point A is checked with point B and C to see if it forms a local maximum. If so, it is considered for next stage, otherwise, it is suppressed (put to zero).
+
+The output of step (3) is a binary image with thin edges.
+
+The code[^13] demonstrates how you would code such an NMS for the purpose of canny edge detection. 
+
+## Hysterisis Thresholding
+The final step of this multi-stage algorithm decides which among all edges are really edges and which of them are not. It accomplishes this using two threshold values, specified when we call the `cv2.Canny()` function:
+
+```py
+canny = cv2.Canny(img, threshold1=50, threshold2=180)
+```
+
+Any edges with an intensity gradient above `threshold2` are considered edges and any edges below `threshold1` are considered non-edges and so are suppressed. 
+
+The edges that lie between these two values (in our code above, edges with intensity gradient between 50 and 180) are classified as edges **if they are connected to sure-edge pixels** (the ones above 180) otherwise they are also discarded.
+
+This stage also removes small pixels ("noises") on the assumption that edges are long lines ("connected").
+
+The full procedure is implemented in a single function, `cv2.Canny()` and the first three parameters are required, respectively being the input image, the first and second threshold value. `canny_01.py` implements this and compare that to the Sobel Edge detector we developed earlier:
+
+![](assets/sobelvscanny.png)
 
 ## Learn By Building
 In the `homework` directory, you'll find a picture of scattered lego bricks `lego.jpg`. Exactly the kind of stuff you don't want on your bedroom floor, as anyone living with kids at home would testify. 
@@ -351,3 +403,12 @@ For the sake of this exercise, your script should feature the use of a Sobel Ope
 [^8]: Structural Analysis and Shape Descriptors, [OpenCV Documentation](https://docs.opencv.org/master/d3/dc0/group__imgproc__shape.html#ga819779b9857cc2f8601e6526a3a5bc71)
 
 [^9]: Contours Hierarchy, [OpenCV Documentation](https://docs.opencv.org/trunk/d9/d8b/tutorial_py_contours_hierarchy.html)
+
+[^10]: Shapiro, L. G. and Stockman, G. C, Computer Vision, London etc, 2001
+
+[^11]: Bastan, M., Bukhari, S., and Breuel, T., Active Canny: Edge Detection and Recovery with Open Active Contour Models, Technical University of Kaiserslautern, 2016
+
+[^12]: Maini, R. and Aggarwal, H., Study and Comparison of various Image Edge Detection Techniques, Internal Jounral of Image Processing (IJIP)
+
+[^13]: [Example code for NMS, github](https://github.com/onlyphantom/Canny-edge-detector/blob/master/nonmax_suppression.py)
+

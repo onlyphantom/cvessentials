@@ -55,6 +55,9 @@ A math-first approach to learning computer vision in Python. The repository will
             - [Adaptive Thresholding](edgedetect/edgedetect.html#adaptive-thresholding)
         - [Edge-based Contour Estimation](edgedetect/edgedetect.html#edge-based-contour-estimation)
             - [Contour Retrieval and Approximation](edgedetect/edgedetect.html#contour-retrieval-and-approximation)
+    - [Canny Edge Detector](edgedetect/edgedetect.html#canny-edge-detector)
+        - [Edge Thinning](edgedetect/edgedetect.html#edge-thinning)
+        - [Hysterisis Thresholding](edgedetect/edgedetect.html#hysterisis-thresholding)
     - References and learn-by-building modules
 
 ## Future chapters
