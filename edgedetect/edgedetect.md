@@ -332,7 +332,7 @@ I said it's a multi-stage procedure, because the technique as described in his o
 2. Compute gradient magnitudes and angles
 3. Apply non-maximum suppression (NMS) 
     - Suppress close-by edges that are non-maximal, leaving only local maxima as edges
-4. Track edge by hysterisis
+4. Track edge by hysteresis
     - Suppress all other edges that are weak and not connected to strong edges and link the edges
 
 Step (1) and (2) in the procedure above can be achieved using code we've written so far in our Sobel Operator scripts. We use the Sobel mask filters to compute $G_x$ and $G_y$, respectively the gradient component in each orientation. We then compute the gradient magnitude and the angle $\theta$:
@@ -356,7 +356,7 @@ The output of step (3) is a binary image with thin edges.
 
 The code[^13] demonstrates how you would code such an NMS for the purpose of canny edge detection. 
 
-## Hysterisis Thresholding
+## Hysteresis Thresholding
 The final step of this multi-stage algorithm decides which among all edges are really edges and which of them are not. It accomplishes this using two threshold values, specified when we call the `cv2.Canny()` function:
 
 ```py

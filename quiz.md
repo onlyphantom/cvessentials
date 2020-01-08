@@ -32,3 +32,14 @@
     - [ ] RETR_OUTER, CHAIN_APPROX_SIMPLE
     - [ ] RETR_OUTER, CHAIN_APPROX_NONE
     - [ ] RETR_LIST, CHAIN_APPROX_NONE
+
+6. The function call cv2.Canny(img, 50, 180) will determine which of the intensity gradients as definite edges?
+    - [ ] 40
+    - [ ] 100
+    - [ ] 200
+
+7. Which of the following is NOT part of the Canny Edge procedure?
+    - [ ] Compute gradient in each direction
+    - [ ] Suppress edges that are non-maximal
+    - [ ] Discard pixels that are more likely noise than true edges
+    - [ ] Retrieve only the extreme outer contours from the edges
