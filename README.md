@@ -82,3 +82,10 @@ The first scheduled workshop is January 4, 2020, which serves as an introduction
 - All other illustrations are created by me in Keynote. 
 
 - Videos are created by me, and Bahasa Indonesia voice over on my videos is by [Tiara Dwiputri](https://github.com/tiaradwiputri)
+
+## Badge of Completion
+To earn a badge of completion, [attempt the quizzes](https://corgi.re/courses/onlyphantom/cvessentials) on https://corgi.re. [Corgi](https://corgi.re) is an aggregation tool for **co**u**r**ses on **gi**thub (hence the name) with a primary focus on data science and computer programming. 
+
+Link to earn a badge: [Computer Vision Essentials | Corgi](https://corgi.re/courses/onlyphantom/cvessentials)
+
+If you need help in the course, attend my in-person workshops on this topic (Computer Vision Essentials, free) throughout the course of the year.
