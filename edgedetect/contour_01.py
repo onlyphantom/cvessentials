@@ -4,7 +4,7 @@ import numpy as np
 
 image = cv2.imread("assets/pens.png")
 image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-cv2.imshow("Resized and Grayscale", image)
+cv2.imshow("Grayscale", image)
 cv2.waitKey(0)
 
 image = cv2.GaussianBlur(image, (3, 3), 0)
