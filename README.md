@@ -60,10 +60,22 @@ A math-first approach to learning computer vision in Python. The repository will
         - [Hysteresis Thresholding](edgedetect/edgedetect.html#hysteresis-thresholding)
     - References and learn-by-building modules
 
+### Chapter 4
+- [Canny Edge Detector](digitrecognition/digitrec.md)
+    - A Note on Deep Learning
+        - Why not MNIST?
+    - Region of Interest
+        - Code Illustrations
+    - ... _\<Work in Progress\>_
+
 ## Future chapters
 - Work in progress, but the full course will take the same philosophy of math-first learning, and possible topics that will feature in this course set includes convolutional neural networks, performing morphological operations, modern image segmentations techniques, video and web cam operations.
 
 ## Course Materials Preview:
+### Python scripts
+![](digitrecognition/assets/croproi.gif)
+
+### PDF and HTML
 ![](assets/ecv_caption.gif)
 
 
