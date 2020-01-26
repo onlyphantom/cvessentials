@@ -61,12 +61,23 @@ A math-first approach to learning computer vision in Python. The repository will
     - References and learn-by-building modules
 
 ### Chapter 4
-- [Canny Edge Detector](digitrecognition/digitrec.md)
+- [Digit Classification](digitrecognition/digitrec.md)
     - A Note on Deep Learning
         - Why not MNIST?
     - Region of Interest
-        - Code Illustrations
-    - ... _\<Work in Progress\>_
+        - ROI identification
+        - Arc Length and Area Size
+            - Dive Deeper
+        - ROI extraction
+    - Morphological Transformations
+        - Erosion
+        - Dilation
+        - Opening and Closing
+        - Learn-by-building
+    - Seven-segment display
+        - Practical Strategies
+            - Contour Properties
+    - References and learn-by-building modules
 
 ## Future chapters
 - Work in progress, but the full course will take the same philosophy of math-first learning, and possible topics that will feature in this course set includes convolutional neural networks, performing morphological operations, modern image segmentations techniques, video and web cam operations.
