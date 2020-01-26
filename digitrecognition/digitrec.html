@@ -1,0 +1,754 @@
+<!DOCTYPE html><html><head>
+      <title>digitrec</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:////Users/samuel/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.5.1/node_modules/@shd101wyy/mume/dependencies/katex/katex.min.css">
+      
+      
+
+      
+      
+      
+      
+      
+      
+      
+
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+.markdown-preview.markdown-preview {
+  font-size: 0.8rem;
+  line-height: 1.2rem;
+}
+.markdown-preview.markdown-preview pre {
+  font-size: 0.7rem;
+}
+.markdown-preview.markdown-preview h1 {
+  font-size: 1.4rem;
+  margin-bottom: 1%;
+}
+.markdown-preview.markdown-preview h2 {
+  font-size: 1.1rem;
+  margin-bottom: 1%;
+}
+.markdown-preview.markdown-preview h3,
+.markdown-preview.markdown-preview h4,
+.markdown-preview.markdown-preview h5,
+.markdown-preview.markdown-preview h6 {
+  margin-bottom: 1%;
+}
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="background">Background</h1>
+
+<p>In Chapter 4: Digit Recognition, we&apos;ll add a few new techniques to our image processing toolset by attempting to build a digit recognition pipeline from start to finish. Throughout the exercise, we will get to practice the image preprocessing tricks we&apos;ve picked up from previous chapters:</p>
+<ul>
+<li>Image manipulations such as resizing, cropping, rotation, color conversion</li>
+<li>Blurring and sharpening operations</li>
+<li>Thresholding and Edge Detection</li>
+<li>Contour approximation</li>
+</ul>
+<p>New method and strategies that you&apos;ll be learning include:</p>
+<ul>
+<li>Drawing operations (rectangles, text) on our image</li>
+<li>Region of interest and bounding rectangles</li>
+<li>Morphological transformations</li>
+<li>The Seven-Segment Display</li>
+</ul>
+<h2 class="mume-header" id="what-about-deep-learning">What about Deep Learning?</h2>
+
+<p>To be clear, specialised deep learning libraries that have sprung out in recent years are a lot more robust in their approach. By utilizing machine learning principles (cost function, gradient descent etc), these specialised libraries can handle highly complex object recognition and OCR (optical character recognition) tasks at the cost of brute computing power.</p>
+<p>The overarching motivation of this free course however, was to make clear to beginners what constitutes artificial intelligence, and to illustrate the principle benefits of machine learning. I try to achieve that by demonstrating -- over multiple chapters of this course -- how computer visions were traditionally, or rather &quot;classically&quot;, performed prior to the emergence of deep learning.</p>
+<p>By learning the classical approaches to computer vision, the student (you) can compare the effort it takes to hand-tuning parameters and this adds a new dimension of appreciation towards self-learning methods that we&apos;ll discuss in the near future.</p>
+<h2 class="mume-header" id="region-of-interest">Region of Interest</h2>
+
+<p>Do a quick google search on &quot;digit recognition&quot; or &quot;digit classification&quot; and it&apos;s hard to find an introductory deep learning course that <strong>doesn&apos;t use</strong> the famous MNIST (Modified National Institute of Standards and Technology)<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> database. This is a handwritten digit database that has long become the <em>de facto</em> in pretty much any machine learning tutorials:</p>
+<p><img src="assets/mnist.png" alt></p>
+<p>But I&apos;d argue, that for a budding computer vision developer, your learning objectives are better served by taking a different approach.</p>
+<p>By choosing real life images, you are confronted with a few more key challenges that are not present from using a well-curated database such as MNIST. These challenges present new opportunities to learn about key concepts such as <strong>region of interest</strong>, and <strong>morphological operations</strong>, that you will come to rely upon greatly in the future.</p>
+<p>First, take a look at 4 real-life pictures of security tokens issued by banks and institutional agencies (left-to-right: Bank Central Asia, DBS, OCBC Bank, OneKey for Singapore Government e-services):</p>
+<p><img src="assets/securitytokens.png" alt></p>
+<p>Notice how noisy these images are, as each image is shot with a different background, different lighting conditions, each token is of a different size and shape, and the different colors in each security token etc.</p>
+<p>Your task, as a computer vision developer, is to develop a pipeline that, in each phase, take you closer to the goal. Roughly speaking, given the above task, we would formulate a pipeline that looks like the following:</p>
+<ol>
+<li>Preprocessing, noise reduction</li>
+<li>Contour approximation</li>
+<li>Find region of interest (ROI), that is the area of the LCD display in each of these pictures</li>
+<li>Extract ROI for further preprocessing, discarding the rest of the image</li>
+<li>Isolate each digit from the ROI</li>
+<li>Iteratively classify each digit in the image</li>
+<li>Combine the per-digit classification to a final string (&quot;output&quot;)</li>
+</ol>
+<p>In practice, step (1) and (2) above is the &quot;application&quot; of the methods you&apos;ve learned in previous chapters of this series. As we&apos;ll soon observe, we will use a combination of blurring operations and edge detection to draw our contours. Among the contours, one of them would be the LCD display containing the digits to be classified. That is our <strong>Region of Interest</strong>.</p>
+<p><img src="assets/croproi.gif" alt></p>
+<h3 class="mume-header" id="selecting-region-of-interest">Selecting Region of Interest</h3>
+
+<p>The GIF above demonstrates the code in <code>roi_01.py</code> but essentially it shows the <code>selectROI</code> method in action. You&apos;ll commonly combined the <code>selectROI</code> method with a either a slicing operation to crop your region of interest, or a drawing operation to call attention to the specific region of the image.</p>
+<pre data-role="codeBlock" data-info="py" class="language-python">x<span class="token punctuation">,</span>y<span class="token punctuation">,</span>w<span class="token punctuation">,</span>h <span class="token operator">=</span> cv2<span class="token punctuation">.</span>selectROI<span class="token punctuation">(</span><span class="token string">&quot;Region of interest&quot;</span><span class="token punctuation">,</span> img<span class="token punctuation">)</span>
+cropped <span class="token operator">=</span> img<span class="token punctuation">[</span>y<span class="token punctuation">:</span>y<span class="token operator">+</span>h<span class="token punctuation">,</span> x<span class="token punctuation">:</span>x<span class="token operator">+</span>w<span class="token punctuation">]</span>
+<span class="token comment"># draw rectangle </span>
+cv2<span class="token punctuation">.</span>rectangle<span class="token punctuation">(</span>img_color<span class="token punctuation">,</span> <span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>x<span class="token operator">+</span>w<span class="token punctuation">,</span>y<span class="token operator">+</span>h<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+</pre><p>In most cases, it simply wouldn&apos;t be realistic to render an image before manually specifying our region of interest. We&apos;ll need this operation to be as close to automatic as possible. But how exactly? That depends greatly on the specific problem set.</p>
+<p>In some cases, the obvious choice of strategy would be simply shape recognition, say by counting the number of vertices from each contour. The following code is an example implementation of that:</p>
+<pre data-role="codeBlock" data-info="py" class="language-python"><span class="token comment"># cnt = contour</span>
+peri <span class="token operator">=</span> cv2<span class="token punctuation">.</span>arcLength<span class="token punctuation">(</span>cnt<span class="token punctuation">,</span> <span class="token boolean">True</span><span class="token punctuation">)</span>
+<span class="token comment"># contour approximation</span>
+cnt_appro <span class="token operator">=</span> cv2<span class="token punctuation">.</span>approxPolyDP<span class="token punctuation">(</span>cnt<span class="token punctuation">,</span> <span class="token number">0.03</span> <span class="token operator">*</span> peri<span class="token punctuation">,</span> <span class="token boolean">True</span><span class="token punctuation">)</span>
+<span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>cnt_approx<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">:</span>
+    est_shape <span class="token operator">=</span> <span class="token string">&apos;triangle&apos;</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token keyword">elif</span> <span class="token builtin">len</span><span class="token punctuation">(</span>cnt_approx<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">5</span><span class="token punctuation">:</span>
+    est_shape <span class="token operator">=</span> <span class="token string">&apos;pentagon&apos;</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+</pre><p>In other cases, you may employ a strategy that try to match contour based on Hu moments (which we&apos;ll study in details in future chapters).</p>
+<p>Other methods may involve a saliency map, or a visual attention map, for ROI extraction. These methods create a new representation of the original image where each pixel&apos;s <strong>unique quality</strong> are amplified or emphasized. One example implementation on Wikipedia<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup> demonstrates how straightforward this concept really is:</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>A</mi><mi>L</mi><mi>S</mi><mo stretchy="false">(</mo><msub><mi>I</mi><mi>K</mi></msub><mo stretchy="false">)</mo><mo>=</mo><munderover><mo>&#x2211;</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mi mathvariant="normal">&#x2223;</mi><msub><mi>I</mi><mi>k</mi></msub><mo>&#x2212;</mo><msub><mi>I</mi><mi>i</mi></msub><mi mathvariant="normal">&#x2223;</mi></mrow><annotation encoding="application/x-tex">SALS(I_K) = \sum^{N}_{i=1}|I_k-I_i|</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault">A</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.07153em;">K</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.106005em;vertical-align:-1.277669em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8283360000000002em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">&#x2211;</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span></span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">&#x2223;</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">&#x2212;</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">&#x200B;</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">&#x2223;</span></span></span></span></span></p>
+<p>As you add new tools and strategies to your computer vision toolbox, you will pick up new approaches to ROI extraction. It is an interesting field of research that has been gaining a lot in popularity with the emergence of deep learning.</p>
+<p>As for the images of bank security tokens, can you think of an approach that may be a good fit? Our region of interest is the LCD screen at the top of the button pad on each device, and they all seem to be rather consistent in shape and size. Give it some thought and read on to find out.</p>
+<h3 class="mume-header" id="arc-length-and-area-size">Arc Length and Area Size</h3>
+
+<p>I&apos;ve hinted at the shape and size being a factor, so maybe that would be a good starting point. The good news is the OpenCV made this incredibly easy through the <code>contourArea()</code> and <code>arcLength()</code> function.</p>
+<p>The following snippet of code, lifted from <code>contourarea_01.py</code>, finds all contours and sort them by area size in descending order before storing the first 10 in <code>cnts</code>:</p>
+<pre data-role="codeBlock" data-info="py" class="language-python">cnts<span class="token punctuation">,</span> _ <span class="token operator">=</span> cv2<span class="token punctuation">.</span>findContours<span class="token punctuation">(</span>edged<span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>RETR_EXTERNAL<span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>CHAIN_APPROX_SIMPLE<span class="token punctuation">)</span>
+<span class="token comment"># sort contours by contourArea, and get the first 10</span>
+cnts <span class="token operator">=</span> <span class="token builtin">sorted</span><span class="token punctuation">(</span>cnts<span class="token punctuation">,</span> key<span class="token operator">=</span>cv2<span class="token punctuation">.</span>contourArea<span class="token punctuation">,</span> reverse<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">9</span><span class="token punctuation">]</span>
+</pre><p>We can also obtain the contour area and parameter iteratively in a for-loop, like the following:</p>
+<pre data-role="codeBlock" data-info="py" class="language-python">cnts<span class="token punctuation">,</span> _ <span class="token operator">=</span> cv2<span class="token punctuation">.</span>findContours<span class="token punctuation">(</span>edged<span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>RETR_EXTERNAL<span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>CHAIN_APPROX_SIMPLE<span class="token punctuation">)</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>cnts<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    area <span class="token operator">=</span> cv2<span class="token punctuation">.</span>contourArea<span class="token punctuation">(</span>cnts<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    peri <span class="token operator">=</span> cv2<span class="token punctuation">.</span>arcLength<span class="token punctuation">(</span>cnts<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> closed<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f&apos;Area:</span><span class="token interpolation"><span class="token punctuation">{</span>area<span class="token punctuation">}</span></span><span class="token string">, Perimeter:</span><span class="token interpolation"><span class="token punctuation">{</span>peri<span class="token punctuation">}</span></span><span class="token string">&apos;</span></span><span class="token punctuation">)</span>
+</pre><p>In effect, we&apos;re looping through each contour that the <code>findContours()</code> operation found, and computing two values each time, <code>area</code> and <code>peri</code>.</p>
+<p>Note that the contour perimeter is also known as the arc length. The second argument <code>closed</code> specify whether the shape is a closed contour (<code>True</code>) or just a curve (<code>closed=False</code>).</p>
+<p>Execute <code>contourarea_01.py</code> and observe how each contour is displayed, from the one with the largest area to the one with the least, for a total of 10 contours. As you run the script on different pictures of bank security tokens, you see that it does a reliable job at finding the contours, sorting them, and returning our LCD display screen as the first in the list. This makes sense, because visually it is apparent that the LCD display occupy the largest area among other closed shapes in our picture.</p>
+<h4 class="mume-header" id="dive-deeper-roi">Dive Deeper: ROI</h4>
+
+<ol>
+<li>
+<p>Use <code>assets/dbs.jpg</code> instead of <code>assets/ocbc.jpg</code> in <code>contourarea_01.py</code>. Were you able to extract the region of interest (LCD Display) successfully without any changes to the script?</p>
+</li>
+<li>
+<p>Could we have successfully extract our region of interest have we used <code>arcLength</code> in our strategy?</p>
+</li>
+<li>
+<p>Supposed we only wanted to extract the region of interest and not the rest, which line of code would you change? Reflect the change in the code and execute it to confirm that you have performed this exercise correctly.</p>
+</li>
+<li>
+<p>Supposed we wanted the contours sorted according to their respective area, from the smallest to the largest, which line of code would you change? Reflect the change in the code and execute it to confirm that you have performed this exercise correctly.</p>
+</li>
+</ol>
+<p>While working through the exercises above, you may find it helpful to also draw the text describing the area size and perimeter next to each contour. I&apos;ve shown you how this can be done in <code>contourarea_02.py</code> but the essential addition we make to the earlier code is the two calls to <code>putText()</code>:</p>
+<pre data-role="codeBlock" data-info="py" class="language-python">PURPLE <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">75</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">130</span><span class="token punctuation">)</span>
+THICKNESS <span class="token operator">=</span> <span class="token number">1</span>
+FONT <span class="token operator">=</span> cv2<span class="token punctuation">.</span>FONT_HERSHEY_SIMPLEX
+cv2<span class="token punctuation">.</span>putText<span class="token punctuation">(</span>img_color<span class="token punctuation">,</span> <span class="token string">&quot;Area:&quot;</span> <span class="token operator">+</span> <span class="token builtin">str</span><span class="token punctuation">(</span>area<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>x<span class="token punctuation">,</span> y <span class="token operator">-</span> <span class="token number">15</span><span class="token punctuation">)</span><span class="token punctuation">,</span> FONT<span class="token punctuation">,</span> <span class="token number">0.4</span><span class="token punctuation">,</span> PURPLE<span class="token punctuation">,</span>THICKNESS<span class="token punctuation">)</span>
+cv2<span class="token punctuation">.</span>putText<span class="token punctuation">(</span>img_color<span class="token punctuation">,</span> <span class="token string">&quot;Perimeter:&quot;</span> <span class="token operator">+</span> <span class="token builtin">str</span><span class="token punctuation">(</span>peri<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>x<span class="token punctuation">,</span> y <span class="token operator">-</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">,</span> FONT<span class="token punctuation">,</span> <span class="token number">0.4</span><span class="token punctuation">,</span>PURPLE<span class="token punctuation">,</span> THICKNESS<span class="token punctuation">)</span>
+</pre><p><img src="assets/textcontour.png" alt></p>
+<h3 class="mume-header" id="roi-extraction">ROI extraction</h3>
+
+<p>With these foundations, we are now ready to write a simple utility script that:</p>
+<ol>
+<li>Find our region of interest</li>
+<li>Crop ROI into a new image</li>
+<li>Save it into an folder named <code>/inter</code> (intermediary) for the actual digit recognition later</li>
+</ol>
+<p>Much of what you need to do has already been presented so far, but the core pieces are, lifted from <code>roi_02.py</code> the following few lines of code:</p>
+<pre data-role="codeBlock" data-info="py" class="language-python">img <span class="token operator">=</span> cv2<span class="token punctuation">.</span>imread<span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span>
+blurred <span class="token operator">=</span> cv2<span class="token punctuation">.</span>GaussianBlur<span class="token punctuation">(</span>img<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+edged <span class="token operator">=</span> cv2<span class="token punctuation">.</span>Canny<span class="token punctuation">(</span>blurred<span class="token punctuation">,</span> <span class="token number">130</span><span class="token punctuation">,</span> <span class="token number">150</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span>
+cnts<span class="token punctuation">,</span> _ <span class="token operator">=</span> cv2<span class="token punctuation">.</span>findContours<span class="token punctuation">(</span>edged<span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>RETR_EXTERNAL<span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>CHAIN_APPROX_SIMPLE<span class="token punctuation">)</span>
+cnts <span class="token operator">=</span> <span class="token builtin">sorted</span><span class="token punctuation">(</span>cnts<span class="token punctuation">,</span> key<span class="token operator">=</span>cv2<span class="token punctuation">.</span>contourArea<span class="token punctuation">,</span> reverse<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">]</span>
+
+x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> w<span class="token punctuation">,</span> h <span class="token operator">=</span> cv2<span class="token punctuation">.</span>boundingRect<span class="token punctuation">(</span>cnts<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+roi <span class="token operator">=</span> img<span class="token punctuation">[</span>y <span class="token punctuation">:</span> y <span class="token operator">+</span> h<span class="token punctuation">,</span> x <span class="token punctuation">:</span> x <span class="token operator">+</span> w<span class="token punctuation">]</span>
+cv2<span class="token punctuation">.</span>imwrite<span class="token punctuation">(</span><span class="token string">&quot;roi.png&quot;</span><span class="token punctuation">,</span> roi<span class="token punctuation">)</span>
+</pre><p>The <code>roi_02.py</code> utility script uses the <code>argparse</code> library so user can specify a file path with a flag <code>-p</code> (or <code>--path</code>) like such:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash">python roi_02.py -p assets/ocbc.jpg
+<span class="token comment"># equivalent:</span>
+python roi_02.py --path assets/ocbc.jpg
+</pre><p>If the user do not specify a file path using the <code>-p</code> flag, the default value would be <code>assets/ocbc.jpg</code>. If you wish to change this, edit <code>roi_02.py</code> and specify a different value for the <code>default</code> parameter.</p>
+<pre data-role="codeBlock" data-info="py" class="language-python">parser <span class="token operator">=</span> argparse<span class="token punctuation">.</span>ArgumentParser<span class="token punctuation">(</span><span class="token punctuation">)</span>
+parser<span class="token punctuation">.</span>add_argument<span class="token punctuation">(</span><span class="token string">&quot;-p&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;--path&quot;</span><span class="token punctuation">,</span> default<span class="token operator">=</span><span class="token string">&quot;assets/ocbc.jpg&quot;</span><span class="token punctuation">)</span>
+</pre><p>You should run this exercise using <code>dbs.jpg</code>, <code>ocbc2.jpg</code>, or <code>onekey.jpg</code> at least once. Execute the script and check the <code>inter</code> folder to confirm that the ROI has been saved. When you&apos;re done, you are ready to move on to the next phase of the digit recognition pipeline.</p>
+<h2 class="mume-header" id="morphological-transformations">Morphological Transformations</h2>
+
+<p>Once the region of interest is obtained, we now have an image that may still contain noises. This is especially the case when our ROI is obtained by means of thresholding methods, since you can expect some &quot;non-features&quot; (noises) to also be included in the resulting image.</p>
+<p>To account for these imperfections, we will now perform a series of operations on our image. We&apos;ll learn what they are formally, but let&apos;s begin by seeing what is it that they <em>offer</em> to our image processing pipeline. I&apos;ve included a picture with some random noise, as follow:</p>
+<p><img src="assets/0417s.png" alt></p>
+<p>The digit &quot;0417&quot; is clearly discernible to the human eye despite the presence of noise. However, consider the perspective of a global thresholding operation; These pixel values are &quot;noise&quot; to us but a computer has no such notion of which pixel values are meaningful and what others are not. A thresold value such as the global mean will take all values into account indiscriminately. A contour finding operation will, instead of 4, return thousands of tiny round segments (they may be tiny, but they are completely valid contours).</p>
+<p>An image processing pipeline that fail to account for these may result in sub-optimal performance or, very often, completely undesired results.</p>
+<p>Enter two of the most fundamental morphological transformations: <strong>erosion</strong> and <strong>dilation</strong>.</p>
+<h3 class="mume-header" id="erosion">Erosion</h3>
+
+<p>Erosion &quot;erodes away the boundaries of foreground object&quot;<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup> by sliding a kernel through the image and set a pixel to 1 <strong>only if all the pixels under the kernel is 1</strong>.</p>
+<p>This in effect discard pixels near the boundary and any floating pixels that are not part of a larger blob (which is what the human eye is interested in). Because pixels are eroded, your foreground object will shrink in size.</p>
+<h3 class="mume-header" id="dilation">Dilation</h3>
+
+<p>The opposite of erosion, Dilation sets a pixel to 1 if <strong>at least one pixel under the kernel is 1</strong>, essentially &quot;growing&quot; the foreground object.</p>
+<p>Because of how these operations work, there are a couple of things to note:</p>
+<ol>
+<li>Morphological transformations are usually performed on binary images. Recall that pixel values in binary images are either a full white (i.e 1) or black (i.e 0).</li>
+<li>As per convention, we want to keep our foregound in white and background in black</li>
+<li>Because erosion results in a shrinking foreground and dilation results in a growing foreground, these two operations are also commonly used in combinations, i.e erosion followed by dilation, or vice versa</li>
+</ol>
+<p><img src="assets/morphexample.png" alt></p>
+<p>As we read our image in grayscale mode (<code>flags=0</code>), we obtain a white blackground and a mostly-black foreground. This is illustrated in the subplot titled &quot;Original&quot; above. We begin our preprocessing steps by first binarizing the image (step 1), followed by inverting the colors (step 2) to get a white-on-black image.</p>
+<p>An erosion operation is then performed (step 3). This works by creating our kernel (either through <code>numpy</code> or through <code>opencv</code>&apos;s structuring element) and sliding that kernel across our image to remove white noises in our image.</p>
+<p>The side-effect is that our foreground object has now shrunk in size as it&apos;s boundaries are eroded away. We grow it back by applying a dilation (step 4) and finally show the output as illustrated in the bottom-right pane of the image above.</p>
+<pre data-role="codeBlock" data-info="py" class="language-python"><span class="token comment"># read as grayscale</span>
+roi <span class="token operator">=</span> cv2<span class="token punctuation">.</span>imread<span class="token punctuation">(</span><span class="token string">&quot;assets/0417s.png&quot;</span><span class="token punctuation">,</span> flags<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+<span class="token comment"># step 1: </span>
+_<span class="token punctuation">,</span> thresh <span class="token operator">=</span> cv2<span class="token punctuation">.</span>threshold<span class="token punctuation">(</span>roi<span class="token punctuation">,</span> <span class="token number">170</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>THRESH_BINARY<span class="token punctuation">)</span>
+<span class="token comment"># step 2:</span>
+inv <span class="token operator">=</span> cv2<span class="token punctuation">.</span>bitwise_not<span class="token punctuation">(</span>thresh<span class="token punctuation">)</span>
+<span class="token comment"># step 3 (option 1):</span>
+kernel <span class="token operator">=</span> np<span class="token punctuation">.</span>ones<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">,</span> np<span class="token punctuation">.</span>uint8<span class="token punctuation">)</span>
+<span class="token comment"># step 3 (option 2):</span>
+kernel <span class="token operator">=</span> cv2<span class="token punctuation">.</span>getStructuringElement<span class="token punctuation">(</span>cv2<span class="token punctuation">.</span>MORPH_ELLIPSE<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+eroded <span class="token operator">=</span> cv2<span class="token punctuation">.</span>erode<span class="token punctuation">(</span>inv<span class="token punctuation">,</span> kernel<span class="token punctuation">,</span> iterations<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token comment"># step 4:</span>
+dilated <span class="token operator">=</span> cv2<span class="token punctuation">.</span>dilate<span class="token punctuation">(</span>eroded<span class="token punctuation">,</span> kernel<span class="token punctuation">,</span> iterations<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+cv2<span class="token punctuation">.</span>imshow<span class="token punctuation">(</span><span class="token string">&quot;Transformed&quot;</span><span class="token punctuation">,</span> dilated<span class="token punctuation">)</span>
+cv2<span class="token punctuation">.</span>waitKey<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+</pre><h3 class="mume-header" id="opening-and-closing">Opening and Closing</h3>
+
+<p>Another name for <strong>Erosion, followed by Dilation</strong> is the Opening. It is useful in removing noise in our image. The reverse of Opening is Closing, where we first <strong>perform Dilation followed by Erosion</strong>, particularly suited for closing small holes inside foreground objects.</p>
+<p>OpenCV includes the more generic <code>morphologyEx</code> method for all other morphological operations beyond Erosion and Dilation. The function takes an image as the first argument, an operation as the second operation and finally the kernel. Compare how your code will differ between <code>cv2.erode</code> and <code>cv2.dilate</code>, and their respective equivalence in <code>cv2.morphologyEx()</code>:</p>
+<pre data-role="codeBlock" data-info="py" class="language-python"><span class="token keyword">import</span> cv2
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+
+img <span class="token operator">=</span> cv2<span class="token punctuation">.</span>imread<span class="token punctuation">(</span><span class="token string">&apos;image.png&apos;</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span>
+kernel <span class="token operator">=</span> np<span class="token punctuation">.</span>ones<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">,</span>np<span class="token punctuation">.</span>uint8<span class="token punctuation">)</span>
+erosion <span class="token operator">=</span> cv2<span class="token punctuation">.</span>erode<span class="token punctuation">(</span>img<span class="token punctuation">,</span>kernel<span class="token punctuation">,</span>iterations <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token comment"># Equivalent:</span>
+<span class="token comment"># cv2.morphologyEx(img, cv2.MORPH_ERODE, kernel,iterations=1)</span>
+dilation <span class="token operator">=</span> cv2<span class="token punctuation">.</span>dilate<span class="token punctuation">(</span>img<span class="token punctuation">,</span>kernel<span class="token punctuation">,</span>iterations <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token comment"># Equivalent:</span>
+<span class="token comment"># cv2.morphologyEx(img, cv2.MORPH_DILATE, kernel,iterations=1)</span>
+opening <span class="token operator">=</span> cv2<span class="token punctuation">.</span>morphologyEx<span class="token punctuation">(</span>img<span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>MORPH_OPEN<span class="token punctuation">,</span> kernel<span class="token punctuation">)</span>
+closing <span class="token operator">=</span> cv2<span class="token punctuation">.</span>morphologyEx<span class="token punctuation">(</span>img<span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>MORPH_CLOSE<span class="token punctuation">,</span> kernel<span class="token punctuation">)</span>
+</pre><h3 class="mume-header" id="learn-by-building-morphological-transformation">Learn-by-building: Morphological Transformation</h3>
+
+<p>In the <code>homework</code> directory, you&apos;ll find <code>0417h.png</code>. Your job is to apply what you&apos;ve learned in this lesson to clean up the image. Your output should have these qualities:</p>
+<ol>
+<li>As free of noise as possible (remove the lines, and the red splatted dots across the image)</li>
+<li>If you run <code>findContours()</code> on the output, you should have exactly 4 contours</li>
+<li>Foreground object in white, background in black</li>
+</ol>
+<p><img src="homework/0417h.png" alt></p>
+<p>You are free to pick your strategy, but a reference solution would look like the following:</p>
+<p><img src="assets/0417reference.png" alt></p>
+<h2 class="mume-header" id="seven-segment-display">Seven-segment display</h2>
+
+<p>The seven-segment display (known also as &quot;seven-segment indicator&quot;) is a form of electronic display device for displaying decimal numerals<sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup> widely used in digital clocks, electronic meters, calculators and banking security tokens.</p>
+<p><img src="assets/sevenseg.png" alt></p>
+<p>This is relevant because it is the character representation of our digits in each of these security tokens. If we can isolate each digit from each other, we can iteratively predict the &quot;class&quot; of each digit (0 to 9). Specifically, we are going to perform a classification task based on the state of each segment.</p>
+<p>To ease our understanding, let&apos;s refer to each segment using the letters A to G:</p>
+<p><img src="assets/sevenseg1.png" alt></p>
+<p>We can then create a lookup table that match the collective states to the corresponding class:</p>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+<th>d</th>
+<th>e</th>
+<th>f</th>
+<th>g</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>5</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>6</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>7</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>8</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>9</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>How would we represent such a lookup table in our Python code and how would we use it? The obvious answer to the first question is a dictionary. Notice that <code>DIGITSDICT</code> is just a representation of the &quot;binary state&quot; of each segment. The digit &quot;8&quot; for example correspond to all seven segments being activated, or &quot;on&quot; (state of <code>1</code>).</p>
+<pre data-role="codeBlock" data-info="py" class="language-python">DIGITSDICT <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">,</span>
+    <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">,</span>
+    <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token number">4</span><span class="token punctuation">,</span>
+    <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token number">5</span><span class="token punctuation">,</span>
+    <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token number">6</span><span class="token punctuation">,</span>
+    <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token number">7</span><span class="token punctuation">,</span>
+    <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token number">8</span><span class="token punctuation">,</span>
+    <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token number">9</span>
+<span class="token punctuation">}</span>
+</pre><p>Then, for each digit, we would look at the pixel values in each of the seven segments, and if the majority of pixels are white, we would classify that segment as being in an activated state (<code>1</code>), otherwise in a state of <code>0</code>. As we iterate over the 7 segments, we now have an array of length 7, each element a binary value(<code>0</code> or <code>1</code>).</p>
+<p>We would then find the corresponding value in our dictionary using that array. Your code would resemble the following:</p>
+<pre data-role="codeBlock" data-info="py" class="language-python"><span class="token comment"># define the rectangle areas corresponding each segment</span>
+sevensegs <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">(</span><span class="token punctuation">(</span>x0<span class="token punctuation">,</span> y0<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>x1<span class="token punctuation">,</span> y1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">(</span><span class="token punctuation">(</span>x2<span class="token punctuation">,</span> y2<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>x3<span class="token punctuation">,</span> y3<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token comment"># 7 of them</span>
+<span class="token punctuation">]</span>
+
+<span class="token comment"># initialize the state to OFF</span>
+on <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token number">7</span> 
+
+<span class="token comment"># set each segment to ON / OFF based on majority</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span>i<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>p1x<span class="token punctuation">,</span> p1y<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>p2x<span class="token punctuation">,</span> p2y<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>sevensegs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># numpy slicing to extract only one region</span>
+    region <span class="token operator">=</span> roi<span class="token punctuation">[</span>p1y<span class="token punctuation">:</span>p2y<span class="token punctuation">,</span> p1x<span class="token punctuation">:</span>p2x<span class="token punctuation">]</span>
+    <span class="token comment"># if majority pixels are white, set state to ON</span>
+    <span class="token keyword">if</span> np<span class="token punctuation">.</span><span class="token builtin">sum</span><span class="token punctuation">(</span>region <span class="token operator">==</span> <span class="token number">255</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> region<span class="token punctuation">.</span>size <span class="token operator">*</span><span class="token number">0.5</span><span class="token punctuation">:</span>
+        on<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span>
+
+<span class="token comment"># lookup on dictionary</span>
+digit <span class="token operator">=</span> DIGITSDICT<span class="token punctuation">[</span><span class="token builtin">tuple</span><span class="token punctuation">(</span>on<span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token comment"># digit is one of 0-9</span>
+</pre><p>There are multiple ways to write a for-loop but it&apos;s important that you are aware of the order in which your for-loop your executing. Referring to our seven-segment illustration below,the first iteration is only concerned with the state of &apos;A&apos; while the second interation handles the state of &apos;B&apos;, and so on.</p>
+<p><img src="assets/sevenseg1.png" alt></p>
+<p>Using <code>enumerate</code>, we obtain an additional counter (<code>i</code>) to our iterable (<code>sevensegs</code>); This is convenient for the purpose of setting states. At the first iteration, the first element is our list is conditionally set to 1 if more than half of the pixels in segment &apos;A&apos; are white. A more detailed example of python&apos;s enumeration is in <code>utils/enumerate.py</code>.</p>
+<h3 class="mume-header" id="practical-strategies">Practical Strategies</h3>
+
+<p>If you are paying close attention to the digit &apos;0&apos; in our LCD display, you will notice that the absence of the &apos;G&apos; segment causes a pretty visible and significant gap. When you test your digit recognition script without special consideration to this attribute, you will find it consistently failing to account for the numbers &quot;0&quot;,&quot;1&quot; and &quot;7&quot;. In fact, you may not even be able to isolate the aforementioned numbers altogether using the <code>findContour</code> operation, because they were treated as two disjointed pieces instead of a whole piece.</p>
+<p>A reasonable strategy to handle this is the Dilation or Closing (Dilation followed by Erosion) operation that you&apos;ve learned earlier.</p>
+<h4 class="mume-header" id="contour-properties">Contour Properties</h4>
+
+<p>Furthermore, in many cases of digit recognition / digit classification you will want to predict the class for each digit in an ordered fashion. Supposed the LCD screen contains the digits &quot;40710382&quot;, our algorithm should correctly isolate these digits, classify them iteratively, but do so from the leftmost digit to the rightmost. Failing to account for this may result in your algorithm correctly classifying each digit, but produce an unreasonable output such as &quot;1740238&quot;.</p>
+<p>There are a few strategies you can employ here. We&apos;ve seen in  <code>contourarea_01.py</code> and <code>contourarea_02.py</code> how contour has attributes that can be retrieved using the <code>contourArea()</code> and <code>arcLength()</code> functions. Inspect the following snippet and it should help jog your memory:</p>
+<pre data-role="codeBlock" data-info="py" class="language-python">cnts <span class="token operator">=</span> <span class="token builtin">sorted</span><span class="token punctuation">(</span>cnts<span class="token punctuation">,</span> key<span class="token operator">=</span>cv2<span class="token punctuation">.</span>contourArea<span class="token punctuation">,</span> reverse<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">9</span><span class="token punctuation">]</span>
+
+<span class="token keyword">for</span> i<span class="token punctuation">,</span> cnt <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>cnts<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    cv2<span class="token punctuation">.</span>drawContours<span class="token punctuation">(</span>img_color<span class="token punctuation">,</span> cnts<span class="token punctuation">,</span> i<span class="token punctuation">,</span> BCOLOR<span class="token punctuation">,</span> THICKNESS<span class="token punctuation">)</span>
+    area <span class="token operator">=</span> cv2<span class="token punctuation">.</span>contourArea<span class="token punctuation">(</span>cnt<span class="token punctuation">)</span>
+    peri <span class="token operator">=</span> cv2<span class="token punctuation">.</span>arcLength<span class="token punctuation">(</span>cnt<span class="token punctuation">,</span> closed<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f&quot;Area:</span><span class="token interpolation"><span class="token punctuation">{</span>area<span class="token punctuation">}</span></span><span class="token string">; Perimeter: </span><span class="token interpolation"><span class="token punctuation">{</span>peri<span class="token punctuation">}</span></span><span class="token string">&quot;</span></span><span class="token punctuation">)</span>
+</pre><p>Indeed, we&apos;re using countour area as a good indicator to search for our region of interest. When we take this idea a little further, we can further place a constraint on our search criteria. In the following code, we draw a bounding rectangle and for an extra layer of precaution, only takes any bounding boxes that are taller than 20 pixels (step 1).</p>
+<p>Calling <code>boundingRect()</code> on a contour returns 4 values, respectively the x and y coordinate along with the width and height of the contour.</p>
+<p>We then use another property of the contour, its top-left coordinate to determine the logical order of our digits. Specifically, we use the first returned value (<code>cv2.boundingRect(cnt)[0]</code>) since that&apos;s the x value for the top-left coordinate of each region. By sorting against this value, our digits are stored in the Python list in an ordered fashion, determined by their respective coordinate value.</p>
+<pre data-role="codeBlock" data-info="py" class="language-python">digits_cnts <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+cnts<span class="token punctuation">,</span> _ <span class="token operator">=</span> cv2<span class="token punctuation">.</span>findContours<span class="token punctuation">(</span>eroded<span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>RETR_EXTERNAL<span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>CHAIN_APPROX_SIMPLE<span class="token punctuation">)</span>
+<span class="token keyword">for</span> cnt <span class="token keyword">in</span> cnts<span class="token punctuation">:</span>
+    <span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> w<span class="token punctuation">,</span> h<span class="token punctuation">)</span> <span class="token operator">=</span> cv2<span class="token punctuation">.</span>boundingRect<span class="token punctuation">(</span>cnt<span class="token punctuation">)</span>
+    <span class="token comment"># step 1</span>
+    <span class="token keyword">if</span> h <span class="token operator">&gt;</span> <span class="token number">20</span><span class="token punctuation">:</span>
+        digits_cnts <span class="token operator">+=</span> <span class="token punctuation">[</span>cnt<span class="token punctuation">]</span>
+<span class="token comment"># step 2</span>
+sorted_digits <span class="token operator">=</span> <span class="token builtin">sorted</span><span class="token punctuation">(</span>digits_cnts<span class="token punctuation">,</span> key<span class="token operator">=</span><span class="token keyword">lambda</span> cnt<span class="token punctuation">:</span> cv2<span class="token punctuation">.</span>boundingRect<span class="token punctuation">(</span>cnt<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</pre><p>When we put these together, we now have a complete pipeline.<br>
+<img src="assets/digitrecflow.png" alt></p>
+<h1 class="mume-header" id="references">References</h1>
+
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>LeCun, Y., Bottou, L., Bengio, Y., and Haffner, P. (1998). Gradient-based learning applied to document recognition. Proceedings of the IEEE, 86, 2278&#x2013;2324 <a href="#fnref1" class="footnote-backref">&#x21A9;&#xFE0E;</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p>Saliency map, Wikipedia <a href="#fnref2" class="footnote-backref">&#x21A9;&#xFE0E;</a></p>
+</li>
+<li id="fn3" class="footnote-item"><p>Morphological Transformations, OpenCV Documentation <a href="#fnref3" class="footnote-backref">&#x21A9;&#xFE0E;</a></p>
+</li>
+<li id="fn4" class="footnote-item"><p>Seven-segment display, Wikipedia <a href="#fnref4" class="footnote-backref">&#x21A9;&#xFE0E;</a></p>
+</li>
+</ol>
+</section>
+
+      </div>
+      <div class="md-sidebar-toc"><ul>
+<li><a href="#background">Background</a>
+<ul>
+<li><a href="#what-about-deep-learning">What about Deep Learning?</a></li>
+<li><a href="#region-of-interest">Region of Interest</a>
+<ul>
+<li><a href="#selecting-region-of-interest">Selecting Region of Interest</a></li>
+<li><a href="#arc-length-and-area-size">Arc Length and Area Size</a>
+<ul>
+<li><a href="#dive-deeper-roi">Dive Deeper: ROI</a></li>
+</ul>
+</li>
+<li><a href="#roi-extraction">ROI extraction</a></li>
+</ul>
+</li>
+<li><a href="#morphological-transformations">Morphological Transformations</a>
+<ul>
+<li><a href="#erosion">Erosion</a></li>
+<li><a href="#dilation">Dilation</a></li>
+<li><a href="#opening-and-closing">Opening and Closing</a></li>
+<li><a href="#learn-by-building-morphological-transformation">Learn-by-building: Morphological Transformation</a></li>
+</ul>
+</li>
+<li><a href="#seven-segment-display">Seven-segment display</a>
+<ul>
+<li><a href="#practical-strategies">Practical Strategies</a>
+<ul>
+<li><a href="#contour-properties">Contour Properties</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+      <a id="sidebar-toc-btn">&#x2261;</a>
+    
+    
+    
+    
+    
+    
+    
+    
+<script>
+
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
+      
+  
+    </body></html>

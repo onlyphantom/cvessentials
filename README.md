@@ -61,26 +61,39 @@ A math-first approach to learning computer vision in Python. The repository will
     - References and learn-by-building modules
 
 ### Chapter 4
-- [Digit Classification](digitrecognition/digitrec.md)
-    - A Note on Deep Learning
-        - Why not MNIST?
+- Digit Classification
+    - [A Note on Deep Learning](digitrecognition/digitrec.html#what-about-deep-learning)
+        - [Why not MNIST?](digitrecognition/digitrec.html#region-of-interest)
     - Region of Interest
-        - ROI identification
-        - Arc Length and Area Size
-            - Dive Deeper
-        - ROI extraction
-    - Morphological Transformations
-        - Erosion
-        - Dilation
-        - Opening and Closing
-        - Learn-by-building
-    - Seven-segment display
-        - Practical Strategies
-            - Contour Properties
-    - References and learn-by-building modules
+        - [ROI identification](digitrecognition/digitrec.html#selecting-region-of-interest)
+        - [Arc Length and Area Size](digitrecognition/digitrec.html#arc-length-and-area-size)
+            - [Dive Deeper: ROI](digitrecognition/digitrec.html#dive-deeper-roi)
+        - [ROI extraction](digitrecognition/digitrec.html#roi-extraction)
+    - [Morphological Transformations](digitrecognition/digitrec.html#morphological-transformations)
+        - [Erosion](digitrecognition/digitrec.html#erosion)
+        - [Dilation](digitrecognition/digitrec.html#dilation)
+        - [Opening and Closing](digitrecognition/digitrec.html#opening-and-closing)
+        - [Learn-by-building: Morphological Transformation](digitrecognition/digitrec.html#learn-by-building-morphological-transformation)
+    - [Seven-segment display](digitrecognition/digitrec.html#seven-segment-display)
+        - [Practical Strategies](digitrecognition/digitrec.html#practical-strategies)
+            - [Contour Properties](digitrecognition/digitrec.html#contour-properties)
+    - [References and learn-by-building modules](digitrecognition/digitrec.html#references)
 
-## Future chapters
-- Work in progress, but the full course will take the same philosophy of math-first learning, and possible topics that will feature in this course set includes convolutional neural networks, performing morphological operations, modern image segmentations techniques, video and web cam operations.
+## Approach and Motivation
+The course is foundational to anyone who wish to work with computer vision in Python. It covers some of the most common image processing routines, and have in-depth coverage on mathematical concepts present in the materials: 
+- Math-first approach
+- Tons of sample python scripts (.py)
+- Multimedia (image illustrations, video explanation, quiz)
+- Practical tips on real-world applications
+
+The course's **only dependency** is `OpenCV`. Getting started is as easy as `pip install opencv-contrib-python` and you're set to go.
+
+- Question: What about deep learning libraries?
+
+No; While using deep learning for images made for interesting topics, they are probably better suited as an altogether separate course series. This course series (tutorial series) focused on the **essentials of computer vision** and,
+for pedagogical reasons, try not to be overly ambitious with the scope it intends to cover. 
+
+There will be similarity in concepts and principles, as modern neural network architectures draw plenty of inspirations from "classical" computer vision techniques that predate it. By first learning how computer vision problems are solved, the student can compare that to the deep learning equivalent, which result in a more comprehensive appreciation of what deep learning offer to modern day computer scientists. 
 
 ## Course Materials Preview:
 ### Python scripts
@@ -90,17 +103,38 @@ A math-first approach to learning computer vision in Python. The repository will
 ![](assets/ecv_caption.gif)
 
 
-## Workshops and Approach
-The workshop will be delivered in English. Q&A Sessions will be in English and Bahasa Indonesia.
+# Workshops
+I conduct in-person lectures using the materials you find in this repository. These workshops are usually paid because there are upfront costs to afford a venue and crew. Not just any venue, but a learning environment that is fully equipped (audio, desks, charging points for everyone, massive screen projector, walking space fo teaching assistants, dinner). 
 
-The intended audience for this course and accompanying workshop are absolute beginners who have an interest in computer vision and prefer to learn from ground up principles rather than a "apply-and-go tutorial approach".  
+You can follow me [on Instagram](http://instagram.com/officialsamuel/) to be updated about the latest workshops.
 
-The first scheduled workshop is January 4, 2020, which serves as an introduction to this course. Future courses will follow an in-classroom coding sessions with supporting Teaching Assistants.
+### Introduction to AI in Computer Vision
+- 4th January 2020, Jakarta
+    - Kantorkuu, Citywalk sudirman, Jakarta Pusat
+    - Time: 1300-1600
+    - 3 hour
+    - Fee: Free for Algoritma Alumni, 100k IDR for public
+
+### Computer Vision: Principles and Practice
+- 21st and 22nd January 2020, Jakarta
+    - Accelerice, Jl. Rasuna Said, Jakarta Selatan
+    - Time: 1830-2130
+    - 6 Hour
+    - Fee: Free for Algoritma Alumni, 1.5m IDR for public
+
+- 24th and 25th Feburary 2020, Bangkok
+    - JustCo, Samyan Mitrtown
+    - Time: 1830-2130
+    - 6 Hour
+    - Fee: Free for Algoritma Alumni, 9000 THB for public
+
 
 ## Image Assets
 - `car2.png`, `pen.jpg`, `lego.jpg` and `sudoku.jpg` are under Creative Commons (CC) license.
 
-- `sarpi.jpg`, `castello.png`, `canal.png` and all other photography used are taken during my trip to Venice. 
+- `sarpi.jpg`, `castello.png`, `canal.png` and all other photography used are taken during my trip to Venice and you are free to use them. 
+
+- All assets in Chapter 4 (the `digitrecognition` folder) are mine and you are free to use them.
 
 - All other illustrations are created by me in Keynote. 
 
@@ -112,3 +146,8 @@ To earn a badge of completion, [attempt the quizzes](https://corgi.re/courses/on
 Link to earn a badge: [Computer Vision Essentials | Corgi](https://corgi.re/courses/onlyphantom/cvessentials)
 
 If you need help in the course, attend my in-person workshops on this topic (Computer Vision Essentials, free) throughout the course of the year.
+
+## Find me
+- [Facebook](https://www.facebook.com/onlyphantom)
+- [Instagram](http://instagram.com/officialsamuel/)
+- [LinkedIn](http://linkedin.com/in/chansamuel/)

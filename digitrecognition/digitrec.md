@@ -19,7 +19,7 @@ The overarching motivation of this free course however, was to make clear to beg
 By learning the classical approaches to computer vision, the student (you) can compare the effort it takes to hand-tuning parameters and this adds a new dimension of appreciation towards self-learning methods that we'll discuss in the near future.
 
 ## Region of Interest
-Do a quick google search on "digit recognition" and it's hard to find an introductory deep learning course that **doesn't use** the famous MNIST (Modified National Institute of Standards and Technology)[^1] database. This is a handwritten digit database that has long become the _de facto_ in pretty much any machine learning tutorials:
+Do a quick google search on "digit recognition" or "digit classification" and it's hard to find an introductory deep learning course that **doesn't use** the famous MNIST (Modified National Institute of Standards and Technology)[^1] database. This is a handwritten digit database that has long become the _de facto_ in pretty much any machine learning tutorials:
 
 ![](assets/mnist.png)
 
@@ -108,7 +108,7 @@ Note that the contour perimeter is also known as the arc length. The second argu
 
 Execute `contourarea_01.py` and observe how each contour is displayed, from the one with the largest area to the one with the least, for a total of 10 contours. As you run the script on different pictures of bank security tokens, you see that it does a reliable job at finding the contours, sorting them, and returning our LCD display screen as the first in the list. This makes sense, because visually it is apparent that the LCD display occupy the largest area among other closed shapes in our picture.
 
-#### Dive Deeper
+#### Dive Deeper: ROI
 1. Use `assets/dbs.jpg` instead of `assets/ocbc.jpg` in `contourarea_01.py`. Were you able to extract the region of interest (LCD Display) successfully without any changes to the script?
 
 2. Could we have successfully extract our region of interest have we used `arcLength` in our strategy?
@@ -238,7 +238,7 @@ opening = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
 closing = cv2.morphologyEx(img, cv2.MORPH_CLOSE, kernel)
 ```
 
-### Learn-by-Building
+### Learn-by-building: Morphological Transformation
 In the `homework` directory, you'll find `0417h.png`. Your job is to apply what you've learned in this lesson to clean up the image. Your output should have these qualities:
 1. As free of noise as possible (remove the lines, and the red splatted dots across the image)
 2. If you run `findContours()` on the output, you should have exactly 4 contours
