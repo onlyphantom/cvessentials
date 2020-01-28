@@ -193,6 +193,8 @@ Because of how these operations work, there are a couple of things to note:
 
 ![](assets/morphexample.png)
 
+The full code solution is in `morphological_02.py`.
+
 As we read our image in grayscale mode (`flags=0`), we obtain a white blackground and a mostly-black foreground. This is illustrated in the subplot titled "Original" above. We begin our preprocessing steps by first binarizing the image (step 1), followed by inverting the colors (step 2) to get a white-on-black image. 
 
 An erosion operation is then performed (step 3). This works by creating our kernel (either through `numpy` or through `opencv`'s structuring element) and sliding that kernel across our image to remove white noises in our image. 
@@ -216,6 +218,13 @@ dilated = cv2.dilate(eroded, kernel, iterations=1)
 cv2.imshow("Transformed", dilated)
 cv2.waitKey(0)
 ```
+
+OpenCV provides the three shapes for our kernel:
+- Rectangular box: `MORPH_RECT`
+- Cross: `MORPH_CROSS`
+- Ellipse: `MORPH_ELLIPSE`
+
+They are fed as the first argument into `cv2.getStructuringElement()`, with the second being the kernel size (`ksize`) itself. The third argument is the _anchor point_, which defaults to the center.
 
 ### Opening and Closing
 Another name for **Erosion, followed by Dilation** is the Opening. It is useful in removing noise in our image. The reverse of Opening is Closing, where we first **perform Dilation followed by Erosion**, particularly suited for closing small holes inside foreground objects.
@@ -332,6 +341,22 @@ If you are paying close attention to the digit '0' in our LCD display, you will 
 
 A reasonable strategy to handle this is the Dilation or Closing (Dilation followed by Erosion) operation that you've learned earlier. 
 
+Similarly, your ROI may necessitate other pre-processing and the specific tactical solution vary greatly depending on the problem set at hand. 
+
+As I inspect the bounding box we retrieved around the LCD screen, the observation that these bouding boxes often have their digits centered around the bottom half of the display led me to insert an additional step prior to the morphological transformation in the final code solution. The step uses numpy subsetting to trim away the top 20% as well as 20% on each side of the image:
+
+```py
+roi = cv2.imread("roi.png", flags=0)
+RATIO = roi.shape[0] * 0.2
+trimmed = roi[
+    int(RATIO) :, 
+    int(RATIO) : roi.shape[1] - int(RATIO)]
+```
+
+That said, whenever possible, you want to be cautious of not hand-tuning your problem in a way that is overly specific to the images you have at hand lest risking the solution **only** working on those specific images and not others, a phenomenon fondly termed as "overfitting" in the machine learning community.
+
+I've re-executed the solution code against some sample image sets, once with the "trimming" in-place and then without the trimming, before settling on the decision. As you will see later, the trimming improves our accuracy and is a relatively safe strategy given how every LCD screen regardless of the issuer (bank) has the same asymmetry with more "blank space" at the top half compared to the bottom half. 
+
 #### Contour Properties
 Furthermore, in many cases of digit recognition / digit classification you will want to predict the class for each digit in an ordered fashion. Supposed the LCD screen contains the digits "40710382", our algorithm should correctly isolate these digits, classify them iteratively, but do so from the leftmost digit to the rightmost. Failing to account for this may result in your algorithm correctly classifying each digit, but produce an unreasonable output such as "1740238". 
 
@@ -365,8 +390,117 @@ for cnt in cnts:
 sorted_digits = sorted(digits_cnts, key=lambda cnt: cv2.boundingRect(cnt)[0])
 ```
 
-When we put these together, we now have a complete pipeline.  
+When we put these together, we now have a complete pipeline:  
 ![](assets/digitrecflow.png)
+
+The full solution code is in `digit_01.py` but the essential parts are as follow:
+
+```py
+import cv2
+import numpy as np
+# step 1:
+DIGITSDICT = {
+    (1, 1, 1, 1, 1, 1, 0): 0,
+    (0, 1, 1, 0, 0, 0, 0): 1,
+    (1, 1, 0, 1, 1, 0, 1): 2,
+    (1, 1, 1, 1, 0, 0, 1): 3,
+    (0, 1, 1, 0, 0, 1, 1): 4,
+    (1, 0, 1, 1, 0, 1, 1): 5,
+    (1, 0, 1, 1, 1, 1, 1): 6,
+    (1, 1, 1, 0, 0, 1, 0): 7,
+    (1, 1, 1, 1, 1, 1, 1): 8,
+    (1, 1, 1, 1, 0, 1, 1): 9,
+}
+
+# step 2
+roi = cv2.imread("inter/ocbc-roi.png", flags=0)
+
+# step 3
+RATIO = roi.shape[0] * 0.2
+roi = cv2.bilateralFilter(roi, 5, 30, 60)
+trimmed = roi[int(RATIO) :, int(RATIO) : roi.shape[1] - int(RATIO)]
+
+# step 4
+edged = cv2.adaptiveThreshold(
+    trimmed, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 5, 5
+)
+
+# step 5
+kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (2, 5))
+dilated = cv2.dilate(edged, kernel, iterations=1)
+eroded = cv2.erode(dilated, kernel, iterations=1)
+
+# step 6
+cnts, _ = cv2.findContours(eroded, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+digits_cnts = []
+for cnt in cnts:
+    (x, y, w, h) = cv2.boundingRect(cnt)
+    if h > 20:
+        digits_cnts += [cnt]
+
+# step 7
+sorted_digits = sorted(digits_cnts, key=lambda cnt: cv2.boundingRect(cnt)[0])
+
+# step 8
+digits = []
+for cnt in sorted_digits:
+    # step 8a
+    (x, y, w, h) = cv2.boundingRect(cnt)
+    roi = eroded[y : y + h, x : x + w]
+    qW, qH = int(w * 0.25), int(h * 0.15)
+    fractionH, halfH, fractionW = int(h * 0.05), int(h * 0.5), int(w * 0.25)
+
+    # step 8b
+    sevensegs = [
+        ((0, 0), (w, qH)),  # a (top bar)
+        ((w - qW, 0), (w, halfH)),  # b (upper right)
+        ((w - qW, halfH), (w, h)),  # c (lower right)
+        ((0, h - qH), (w, h)),  # d (lower bar)
+        ((0, halfH), (qW, h)),  # e (lower left)
+        ((0, 0), (qW, halfH)),  # f (upper left)
+        # ((0, halfH - fractionH), (w, halfH + fractionH)) # center
+        (
+            (0 + fractionW, halfH - fractionH),
+            (w - fractionW, halfH + fractionH),
+        ),  # center
+    ]
+
+    # step 8c
+    on = [0] * 7
+    for (i, ((p1x, p1y), (p2x, p2y))) in enumerate(sevensegs):
+        region = roi[p1y:p2y, p1x:p2x]
+        print(
+            f"{i}: Sum of 1: {np.sum(region == 255)}, Sum of 0: {np.sum(region == 0)}, Shape: {region.shape}, Size: {region.size}"
+        )
+        if np.sum(region == 255) > region.size * 0.5:
+            on[i] = 1
+        print(f"State of ON: {on}")
+    # step 8d
+    digit = DIGITSDICT[tuple(on)]
+    print(f"Digit is: {digit}")
+    digits += [digit]
+    # step 9
+    cv2.rectangle(canvas, (x, y), (x + w, y + h), CYAN, 1)
+    cv2.putText(canvas, str(digit), (x - 5, y + 6), FONT, 0.3, (0, 0, 0), 1)
+    cv2.imshow("Digit", canvas)
+    cv2.waitKey(0)
+print(f"Digits on the token are: {digits}")
+```
+
+- Step 1: Initialize the lookup dictionary
+- Step 2: Read our ROI image using OpenCV
+- Step 3: Noise reduction and trim away asymmetrical white space in our ROI
+- Step 4: Binarize our image using adaptive thresholding
+- Step 5: Morphological transformation to remove noise and fill the small holes in our digit
+- Step 6: Find contours in our image with a height greater than 20px
+- Step 7: Sort the contours in-place, using the x value of their coordinates (hence, left to right)
+- Step 8
+    - Step 8a: Create rectangle bounding box on each digit, and some convenience units that we later use to slice the seven segments. Notice that these convenience units are not hard-coded values, but are proportional to the Height (`h`) of our rectangular box
+    - Step 8b: Slice the seven segments; The first segment ("A") is from point (0,0) to (w, `int(h * 0.15)`); This segment is `w` in width and 15% the height of the full digit contour, starting from position (0, 0)
+    -  Step 8c: Initialize the state to `0` for each of the 7 segments, then conditionally set regions with more white than black pixels to `1`
+    -  Step 8d: Once all 7 states have been set, perform lookup against the digit dictionary created in step 1; Append the value to the `digits` list created at the beginning of step 8
+- Step 9: Draw rectangle and add predicted text for each bounding box. Finally, use a print statement to print the `digits` list. 
+
 
 # References
 [^1]: LeCun, Y., Bottou, L., Bengio, Y., and Haffner, P. (1998). Gradient-based learning applied to document recognition. Proceedings of the IEEE, 86, 2278–2324

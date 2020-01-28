@@ -79,16 +79,22 @@ A math-first approach to learning computer vision in Python. The repository will
             - [Contour Properties](digitrecognition/digitrec.html#contour-properties)
     - [References and learn-by-building modules](digitrecognition/digitrec.html#references)
 
+### Chapter 5
+- Facial Recognition
+
 ## Approach and Motivation
 The course is foundational to anyone who wish to work with computer vision in Python. It covers some of the most common image processing routines, and have in-depth coverage on mathematical concepts present in the materials: 
 - Math-first approach
 - Tons of sample python scripts (.py)
+    - 45+ python scripts from chapter 1 to 4 for plug-and-play experiments
 - Multimedia (image illustrations, video explanation, quiz)
+    - 57 image assets from chapter 1 to 4 for practical illustrations
+    - 4 PDFs, and 4 HTMLs, one for each chapter
 - Practical tips on real-world applications
 
 The course's **only dependency** is `OpenCV`. Getting started is as easy as `pip install opencv-contrib-python` and you're set to go.
 
-- Question: What about deep learning libraries?
+##### Question: What about deep learning libraries?
 
 No; While using deep learning for images made for interesting topics, they are probably better suited as an altogether separate course series. This course series (tutorial series) focused on the **essentials of computer vision** and,
 for pedagogical reasons, try not to be overly ambitious with the scope it intends to cover. 
