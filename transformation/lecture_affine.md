@@ -1,5 +1,13 @@
 # Affine Transformation
 
+## Week 1 Notes
+Some simple set-up instructions to get us up and running for the study group on Computer Vision Essentials!
+* Installing python
+* Installing git
+* Installing visual studio code
+* Installing dependencies (`pip install -r requirements.txt`)
+* Installing Markdown Preview Enhanced
+
 ## Definition
 Any transformation that can be expressed in the form of a _matrix multiplication_ (linear transformation) followed by a _vector addition_ (translation). 
 
