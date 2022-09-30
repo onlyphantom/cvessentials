@@ -2,7 +2,7 @@ cycler==0.10.0
 decorator==4.4.1   
 imageio==2.6.1   
 imutils==0.5.3   
-joblib==0.14.0  
+joblib==1.2.0  
 kiwisolver==1.1.0   
 mahotas==1.4.9   
 matplotlib==3.1.1   
