@@ -112,7 +112,7 @@ There will be similarity in concepts and principles, as modern neural network ar
 # Workshops
 I conduct in-person lectures using the materials you find in this repository. These workshops are usually paid because there are upfront costs to afford a venue and crew. Not just any venue, but a learning environment that is fully equipped (audio, desks, charging points for everyone, massive screen projector, walking space fo teaching assistants, dinner). 
 
-You can follow me [on Instagram](http://instagram.com/officialsamuel/) to be updated about the latest workshops.
+You can follow me [on LinkedIn](http://linkedin.com/in/chansamuel/) to be updated about the latest workshops. I also make long-form programming tutorials and lessons on computer vision on [my YouTube channel](https://www.youtube.com/@SamuelChan)
 
 ### Introduction to AI in Computer Vision
 - 4th January 2020, Jakarta
@@ -146,14 +146,12 @@ You can follow me [on Instagram](http://instagram.com/officialsamuel/) to be upd
 
 - Videos are created by me, and Bahasa Indonesia voice over on my videos is by [Tiara Dwiputri](https://github.com/tiaradwiputri)
 
-## Badge of Completion
-To earn a badge of completion, [attempt the quizzes](https://corgi.re/courses/onlyphantom/cvessentials) on https://corgi.re. [Corgi](https://corgi.re) is an aggregation tool for **co**u**r**ses on **gi**thub (hence the name) with a primary focus on data science and computer programming. 
-
-Link to earn a badge: [Computer Vision Essentials | Corgi](https://corgi.re/courses/onlyphantom/cvessentials)
+## New to programming? 50-minute Quick Start
+Here's a video: [Computer Vision Essentials 1](https://youtu.be/NWXY4ASRlgA) I created to get you through the installation and taking the first step into this lesson path.
 
 If you need help in the course, attend my in-person workshops on this topic (Computer Vision Essentials, free) throughout the course of the year.
 
-## Find me
-- [Facebook](https://www.facebook.com/onlyphantom)
-- [Instagram](http://instagram.com/officialsamuel/)
+## Follow me
+- [YouTube](https://www.youtube.com/@SamuelChan)
 - [LinkedIn](http://linkedin.com/in/chansamuel/)
+- [GitHub](https://github.com/onlyphantom)
